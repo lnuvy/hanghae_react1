@@ -22,6 +22,11 @@ class App extends React.Component {
     console.log(this.text);
   }
 
+  addBucket = () => {
+    const inputText = this.text.current.value;
+    this.setState({ list: [...this.state.list, inputText] });
+  };
+
   // 랜더 함수 안에 리액트 엘리먼트를 넣어줍니다!
   render() {
     console.log(this.text.current);
@@ -29,26 +34,29 @@ class App extends React.Component {
     // this 키워드를 통해 state에 접근할 수 있어요.
 
     return (
-      <div className="App">
+      <AppWrap>
         <Container>
           <Title>버킷 리스트</Title>
           <Line />
           <BucketList list={this.state.list} />
         </Container>
 
-        <div>
-          <input
-            type="text"
-            ref={this.text}
-            onChange={() => {
-              console.log(this.text.current.value);
-            }}
-          />
-        </div>
-      </div>
+        <InputWrap>
+          <input type="text" ref={this.text} />
+          <button onClick={this.addBucket}>추가하기</button>
+        </InputWrap>
+      </AppWrap>
     );
   }
 }
+
+const AppWrap = styled.div`
+  background-color: #eee;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+`;
 
 const Container = styled.div`
   background-color: #fff;
@@ -68,6 +76,16 @@ const Title = styled.h1`
 
 const Line = styled.hr`
   margin: 16px 0px;
+`;
+
+const InputWrap = styled.div`
+  background-color: #fff;
+  width: 50vw;
+  max-width: 350px;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 `;
 
 export default App;
