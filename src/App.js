@@ -3,21 +3,34 @@ import "./App.css";
 import LifecycleEx from "./LifecycleEx";
 import React from "react";
 
-function App() {
-  const [isCat, setIsCat] = React.useState(true);
+import { BucketList } from "./BucketList";
 
-  return (
-    <div className="App">
-      {isCat ? <LifecycleEx /> : null}
-      <button
-        onClick={() => {
-          setIsCat(!isCat);
-        }}
-      >
-        바꾸기
-      </button>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      list: ["영화관 가기", "매일 책읽기", "수영 배우기"],
+    };
+  }
+
+  render() {
+    console.log(this.state.list);
+    return (
+      <div className="App">
+        <BucketList dkssudgktpdy={this.state.list} />
+      </div>
+    );
+  }
 }
+
+// function App() {
+
+//   return (
+//     <div className="App">
+//       <BucketList />
+//     </div>
+//   );
+// }
 
 export default App;
