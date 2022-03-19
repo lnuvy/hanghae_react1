@@ -1,11 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Children } from "react";
+import "./App.css";
+import LifecycleEx from "./LifecycleEx";
+import React from "react";
 
 function App() {
+  const [isCat, setIsCat] = React.useState(true);
+
   return (
     <div className="App">
-      <h1>ㅁㄴ읾ㄴㅇ리ㅏㅁ넝리ㅏㅓㅁㄴ이라ㅓ</h1>
-        <img src={logo} className="App-logo" alt="logo" />
+      {isCat ? <LifecycleEx /> : null}
+      <button
+        onClick={() => {
+          setIsCat(!isCat);
+        }}
+      >
+        바꾸기
+      </button>
     </div>
   );
 }
