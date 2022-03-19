@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 // import [컴포넌트 명] from [컴포넌트가 있는 파일경로];
 import BucketList from "./BucketList";
 import "./style.css";
+import styled from "styled-components";
 
 // 클래스형 컴포넌트는 이렇게 생겼습니다!
 class App extends React.Component {
@@ -23,6 +24,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="container">
+          <MyStyled>
+            <p>gdgd</p>
+          </MyStyled>
           <h1>버킷 리스트</h1>
           <hr className="line" />
           <BucketList list={this.state.list} />
@@ -31,5 +35,17 @@ class App extends React.Component {
     );
   }
 }
+
+const MyStyled = styled.div`
+  width: 50vw;
+  min-height: 150px;
+  background-color: ${(props) => (props.bg_color ? "red" : "purple")};
+  p {
+    color: white;
+  }
+  &:hover {
+    background-color: blue;
+  }
+`;
 
 export default App;
