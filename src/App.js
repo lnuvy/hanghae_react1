@@ -14,38 +14,60 @@ class App extends React.Component {
     this.state = {
       list: ["영화관 가기", "매일 책읽기", "수영 배우기"],
     };
+
+    this.text = React.createRef();
+  }
+
+  componentDidMount() {
+    console.log(this.text);
   }
 
   // 랜더 함수 안에 리액트 엘리먼트를 넣어줍니다!
   render() {
+    console.log(this.text.current);
+
     // this 키워드를 통해 state에 접근할 수 있어요.
-    console.log(this.state);
 
     return (
       <div className="App">
-        <div className="container">
-          <MyStyled>
-            <p>gdgd</p>
-          </MyStyled>
-          <h1>버킷 리스트</h1>
-          <hr className="line" />
+        <Container>
+          <Title>버킷 리스트</Title>
+          <Line />
           <BucketList list={this.state.list} />
+        </Container>
+
+        <div>
+          <input
+            type="text"
+            ref={this.text}
+            onChange={() => {
+              console.log(this.text.current.value);
+            }}
+          />
         </div>
       </div>
     );
   }
 }
 
-const MyStyled = styled.div`
+const Container = styled.div`
+  background-color: #fff;
   width: 50vw;
-  min-height: 150px;
-  background-color: ${(props) => (props.bg_color ? "red" : "purple")};
-  p {
-    color: white;
-  }
-  &:hover {
-    background-color: blue;
-  }
+  max-width: 350px;
+  height: 80vh;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+`;
+
+const Title = styled.h1`
+  color: slateblue;
+  text-align: center;
+`;
+
+const Line = styled.hr`
+  margin: 16px 0px;
 `;
 
 export default App;
