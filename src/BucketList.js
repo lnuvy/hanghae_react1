@@ -11,10 +11,6 @@ const BucketList = (props) => {
 
   const my_lists = useSelector((state) => state.bucket.list);
 
-  window.setTimeout(() => {
-    console.log(my_wrap);
-  }, 1000);
-
   return (
     <div ref={my_wrap}>
       {my_lists.map((list, index) => {
@@ -22,7 +18,7 @@ const BucketList = (props) => {
           <ItemStyle
             key={index}
             onClick={() => {
-              navigate("/detail");
+              navigate("/detail/" + index);
             }}
           >
             {list}

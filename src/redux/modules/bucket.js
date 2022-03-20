@@ -10,7 +10,6 @@ const initialState = {
 // Action Creators
 
 export function createBucket(bucket) {
-  console.log("액션 생성");
   return { type: CREATE, bucket };
 }
 
@@ -18,7 +17,6 @@ export function createBucket(bucket) {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "bucket/CREATE": {
-      console.log("값 바꿈");
       const new_bucket_list = [...state.list, action.bucket];
       return { list: new_bucket_list };
     }
