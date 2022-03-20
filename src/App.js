@@ -5,6 +5,8 @@ import logo from "./logo.svg";
 import BucketList from "./BucketList";
 import "./style.css";
 import styled from "styled-components";
+import { Route, Routes } from "react-router-dom";
+import Detail from "./Detail";
 
 // 클래스형 컴포넌트는 이렇게 생겼습니다!
 class App extends React.Component {
@@ -18,27 +20,23 @@ class App extends React.Component {
     this.text = React.createRef();
   }
 
-  componentDidMount() {
-    console.log(this.text);
-  }
+  componentDidMount() {}
 
   addBucket = () => {
     const inputText = this.text.current.value;
     this.setState({ list: [...this.state.list, inputText] });
   };
 
-  // 랜더 함수 안에 리액트 엘리먼트를 넣어줍니다!
   render() {
-    console.log(this.text.current);
-
-    // this 키워드를 통해 state에 접근할 수 있어요.
-
     return (
       <AppWrap>
         <Container>
           <Title>버킷 리스트</Title>
           <Line />
-          <BucketList list={this.state.list} />
+          <Routes>
+            <Route path="/" element={<BucketList list={this.state.list} />} />
+            <Route path="/detail" element={<Detail />} />
+          </Routes>
         </Container>
 
         <InputWrap>

@@ -1,19 +1,11 @@
 // 리액트 패키지를 불러옵니다.
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-// 함수형 컴포넌트는 이렇게 쓸 수도 있고
-// function Bucketlist(props){
-// return (
-// <div>버킷 리스트</div>
-// );
-// }
-
-// 이렇게 쓸 수도 있어요. =>가 들어간 함수를 화살표 함수라고 불러요.
-// 저희는 앞으로 화살표 함수를 사용할거예요.
-// 앗 () 안에 props! 부모 컴포넌트에게 받아온 데이터입니다.
-// js 함수가 값을 받아오는 것과 똑같이 받아오네요.
 const BucketList = ({ list }) => {
+  const navigate = useNavigate();
+
   const my_lists = list;
   const my_wrap = React.useRef(null);
 
@@ -31,7 +23,16 @@ const BucketList = ({ list }) => {
         // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map
         my_lists.map((list, index) => {
           // 콘솔을 확인해봅시다 :)
-          return <ItemStyle key={index}>{list}</ItemStyle>;
+          return (
+            <ItemStyle
+              key={index}
+              onClick={() => {
+                navigate("/detail");
+              }}
+            >
+              {list}
+            </ItemStyle>
+          );
         })
       }
     </div>
