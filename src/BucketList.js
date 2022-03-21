@@ -12,7 +12,7 @@ const BucketList = (props) => {
   const my_lists = useSelector((state) => state.bucket.list);
 
   return (
-    <div ref={my_wrap}>
+    <ListStyle>
       {my_lists.map((list, index) => {
         return (
           <ItemStyle
@@ -26,14 +26,24 @@ const BucketList = (props) => {
           </ItemStyle>
         );
       })}
-    </div>
+    </ListStyle>
   );
 };
+
+const ListStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 50vh;
+`;
 
 const ItemStyle = styled.div`
   padding: 16px;
   margin: 8px;
-  background-color: ${(props) => (props.completed ? "tomato" : "aliceblue")};
+  color: ${(props) => (props.completed ? "#fff" : "#333")};
+  background-color: ${(props) => (props.completed ? "#a673ff" : "aliceblue")};
 `;
 
 export default BucketList;

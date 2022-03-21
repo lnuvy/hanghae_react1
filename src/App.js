@@ -33,7 +33,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
-
       <InputWrap>
         <input type="text" ref={text} />
         <button onClick={addBucket}>추가하기</button>
@@ -52,9 +51,9 @@ const AppWrap = styled.div`
 
 const Container = styled.div`
   background-color: #fff;
-  width: 50vw;
+  width: 60vw;
   max-width: 350px;
-  height: 80vh;
+  min-height: 60vh;
   margin: auto;
   padding: 16px;
   border: 1px solid #ddd;
@@ -72,12 +71,31 @@ const Line = styled.hr`
 
 const InputWrap = styled.div`
   background-color: #fff;
-  width: 50vw;
   max-width: 350px;
-  margin: auto;
+  min-height: 10vh;
   padding: 16px;
-  border: 1px solid #ddd;
+  margin: 20px auto;
   border-radius: 5px;
+  border: 1px solid #ddd;
+  display: flex;
+  & > * {
+    padding: 5px;
+  }
+  & input {
+    border: 1px solid #888;
+    width: 70%;
+    margin-right: 10px;
+  }
+  & input:focus {
+    outline: none;
+    border: 1px solid #a673ff;
+  }
+  & button {
+    width: 25%;
+    color: #fff;
+    border: #a673ff;
+    background: #a673ff;
+  }
 `;
 
 export default App;
