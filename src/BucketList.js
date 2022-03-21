@@ -16,12 +16,13 @@ const BucketList = (props) => {
       {my_lists.map((list, index) => {
         return (
           <ItemStyle
+            completed={list.completed}
             key={index}
             onClick={() => {
               navigate("/detail/" + index);
             }}
           >
-            {list}
+            {list.text}
           </ItemStyle>
         );
       })}
@@ -32,7 +33,7 @@ const BucketList = (props) => {
 const ItemStyle = styled.div`
   padding: 16px;
   margin: 8px;
-  background-color: aliceblue;
+  background-color: ${(props) => (props.completed ? "tomato" : "aliceblue")};
 `;
 
 export default BucketList;

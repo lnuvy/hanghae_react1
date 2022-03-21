@@ -10,6 +10,7 @@ import Detail from "./Detail";
 import NotFound from "./NotFound";
 import { useDispatch } from "react-redux";
 import { createBucket } from "./redux/modules/bucket";
+import Progress from "./Progress";
 
 // 클래스형 컴포넌트는 이렇게 생겼습니다!
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <AppWrap>
       <Container>
         <Title>버킷 리스트</Title>
+        <Progress />
         <Line />
         <Routes>
           <Route path="/" element={<BucketList />} />
