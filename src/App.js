@@ -37,6 +37,13 @@ function App() {
         <input type="text" ref={text} />
         <button onClick={addBucket}>추가하기</button>
       </InputWrap>
+      <button
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
+        위로 가기
+      </button>
     </AppWrap>
   );
 }
@@ -45,16 +52,13 @@ const AppWrap = styled.div`
   background-color: #eee;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
 `;
 
 const Container = styled.div`
   background-color: #fff;
-  width: 60vw;
   max-width: 350px;
   min-height: 60vh;
-  margin: auto;
+  margin: 0 auto;
   padding: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
