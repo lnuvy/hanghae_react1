@@ -3,9 +3,11 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Star from "./Star";
 
 const Detail = () => {
+  const params = useParams();
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { index } = useParams();
+
+  console.log(params);
 
   const week = state.split("")[0];
   const star = state.split("")[1];
@@ -14,7 +16,7 @@ const Detail = () => {
     <div>
       <span>{week}요일 평점 남기기!</span>
       <hr />
-      <Star star={star} />
+      <Star star={star} params={params} />
       <button
         onClick={() => {
           console.log(star);

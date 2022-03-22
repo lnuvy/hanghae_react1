@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Star from "./Star";
 import styled from "styled-components";
 
@@ -8,6 +8,7 @@ import styled from "styled-components";
 let count = 0;
 
 const Main = () => {
+  const params = useParams();
   const navagate = useNavigate();
 
   const weeks = useSelector((state) => state.week.week);
@@ -39,7 +40,7 @@ const Main = () => {
             }}
           >
             <Text>{el}</Text>
-            <Star star={randoms[i]} />
+            <Star star={randoms[i]} params={params} />
             <Semo
               onClick={() => {
                 navagate(`/detail/${i}`, { state: el + randoms[i] });

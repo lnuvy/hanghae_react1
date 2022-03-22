@@ -3,28 +3,32 @@ import styled from "styled-components";
 
 const Star = (props) => {
   const { star } = props;
+  const { params } = props;
   const [clickChange, setClickChange] = useState(
     [false, false, false, false, false].fill(true, 0, star)
   );
+
   const ballClick = (index) => {
-    switch (index) {
-      case 0:
-        setClickChange([true, false, false, false, false]);
-        break;
-      case 1:
-        setClickChange([true, true, false, false, false]);
-        break;
-      case 2:
-        setClickChange([true, true, true, false, false]);
-        break;
-      case 3:
-        setClickChange([true, true, true, true, false]);
-        break;
-      case 4:
-        setClickChange([true, true, true, true, true]);
-        break;
-      default:
-        return;
+    if (params.index) {
+      switch (index) {
+        case 0:
+          setClickChange([true, false, false, false, false]);
+          break;
+        case 1:
+          setClickChange([true, true, false, false, false]);
+          break;
+        case 2:
+          setClickChange([true, true, true, false, false]);
+          break;
+        case 3:
+          setClickChange([true, true, true, true, false]);
+          break;
+        case 4:
+          setClickChange([true, true, true, true, true]);
+          break;
+        default:
+          return;
+      }
     }
   };
 
@@ -44,7 +48,7 @@ const Star = (props) => {
 const BallWrap = styled.div`
   display: flex;
   flex-direction: row;
-  justify-contents: center;
+  justify-content: center;
   align-items: center;
   margin: auto;
 `;
