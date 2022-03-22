@@ -23,8 +23,8 @@ const Detail = () => {
           }}
         >
           {week}요일
-        </span>{" "}
-        평점 남기기!
+        </span>
+        &nbsp; 평점 남기기!
       </h2>
       <hr />
       <Star star={star} params={params} />

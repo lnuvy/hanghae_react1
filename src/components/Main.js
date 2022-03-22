@@ -14,8 +14,6 @@ const Main = () => {
   const weeks = useSelector((state) => state.week.week);
   const randoms = useSelector((state) => state.week.random);
 
-  console.log("난수:", randoms);
-
   // 요일 찾기( 일 = 0 , 월 = 1, ... 토 = 6)
   const now = new Date().getDay();
   if (now !== count) {

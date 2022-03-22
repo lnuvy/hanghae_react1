@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -13,6 +13,20 @@ const Star = (props) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (params.index) window.addEventListener("keydown", handlePress);
+
+    return () => {
+      window.removeEventListener("keydown", handlePress);
+    };
+  }, []);
+
+  const handlePress = (e) => {
+    if (!([0, 1, 2, 3, 4, 5].indexOf(parseInt(e.key)) === -1)) {
+      ballClick(e.key - 1);
+    }
+  };
 
   const ballClick = (index) => {
     if (params.index) {
@@ -33,12 +47,12 @@ const Star = (props) => {
           setClickChange([true, true, true, true, true]);
           break;
         default:
-          return;
+          setClickChange([false, false, false, false, false]);
       }
     }
   };
 
-  const handleUpdate = () => {
+  const handleChange = () => {
     const new_star = clickChange.filter((el) => el).length;
     dispatch(updateStar(new_star, params.index));
     navigate(-1);
@@ -55,7 +69,7 @@ const Star = (props) => {
           />
         ))}
       </BallWrap>
-      {params.index ? <Btn onClick={handleUpdate}>평점 남기기</Btn> : null}
+      {params.index ? <Btn onClick={handleChange}>평점 남기기</Btn> : null}
     </div>
   );
 };

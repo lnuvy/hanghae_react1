@@ -9,6 +9,8 @@ for (let i = 0; i < 7; i++) {
   random.push(Math.floor(Math.random() * 6));
 }
 
+console.log("redux에 담긴 난수 배열: ", random);
+
 const initialState = {
   week: ["일", "월", "화", "수", "목", "금", "토"],
   random,
@@ -20,7 +22,6 @@ export function showMain(week) {
 }
 
 export function updateStar(star, index) {
-  console.log(star, index);
   return { type: UPDATE, star, index };
 }
 
@@ -36,6 +37,7 @@ export default function reducer(state = initialState, action = {}) {
           return action.star;
         } else return el;
       });
+      console.log("수정된 난수 배열: ", updateArr);
       return { ...state, random: updateArr };
     }
     default:
