@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "redux";
-import bucket from "./modules/bucket";
+import week from "./modules/week";
 
-const rootReducer = combineReducers({ bucket });
+const rootReducer = combineReducers({ week });
 
 const store = createStore(rootReducer);
 
