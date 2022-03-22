@@ -19,9 +19,9 @@ export function showMain(week) {
   return { type: MAIN, week };
 }
 
-export function updateStar(week) {
-  console.log(week);
-  return { type: UPDATE, week };
+export function updateStar(star, index) {
+  console.log(star, index);
+  return { type: UPDATE, star, index };
 }
 
 // Reducer
@@ -31,7 +31,12 @@ export default function reducer(state = initialState, action = {}) {
       return state;
     }
     case "UPDATE": {
-      return state;
+      const updateArr = state.random.map((el, i) => {
+        if (i === parseInt(action.index)) {
+          return action.star;
+        } else return el;
+      });
+      return { ...state, random: updateArr };
     }
     default:
       return state;
