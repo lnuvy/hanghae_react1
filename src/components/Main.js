@@ -1,29 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Star from "./Star";
 import styled from "styled-components";
 
-// 요일 세기 (초기화되지않게 컴포넌트 위에 선언)
-let count = 0;
-
-const Main = () => {
+const Main = (props) => {
+  const { weeks } = props;
   const params = useParams();
   const navagate = useNavigate();
 
-  const weeks = useSelector((state) => state.week.week);
-  const randoms = useSelector((state) => state.week.random);
-
-  // 요일 찾기( 일 = 0 , 월 = 1, ... 토 = 6)
-  const now = new Date().getDay();
-  if (now !== count) {
-    for (let i = 0; i < now; i++) {
-      count++;
-      weeks.push(weeks[0]);
-      weeks.shift();
-    }
-  }
-
+  const randoms = Array.from({ length: 7 }, () =>
+    Math.floor(Math.random() * 5)
+  );
   return (
     <div>
       {weeks.map((el, i) => {
@@ -38,10 +25,12 @@ const Main = () => {
             }}
           >
             <Text>{el}</Text>
-            <Star star={randoms[i]} params={params} />
+            <Star grade={randoms[i]} />
             <Semo
               onClick={() => {
-                navagate(`/detail/${i}`, { state: el + randoms[i] });
+                navagate(`/detail/${weeks[i]}`, {
+                  state: { grade: randoms[i] },
+                });
               }}
             ></Semo>
           </div>

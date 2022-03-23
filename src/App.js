@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import "./style.css";
 import Main from "./components/Main";
 import Detail from "./components/Detail";
@@ -9,6 +8,14 @@ import Detail from "./components/Detail";
 function App() {
   const ref = useRef();
   const [name, setName] = useState("누구누구");
+  const weeks = ["일", "월", "화", "수", "목", "금", "토"];
+
+  // 요일 찾기( 일 = 0 , 월 = 1, ... 토 = 6)
+  const now = new Date().getDay();
+  for (let i = 0; i < now; i++) {
+    weeks.push(weeks[0]);
+    weeks.shift();
+  }
 
   const nameChange = () => {
     setName(ref.current.value);
@@ -31,7 +38,7 @@ function App() {
 
         <Line />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main weeks={weeks} />} />
           <Route path="/detail/:index" element={<Detail />} />
         </Routes>
       </Container>
