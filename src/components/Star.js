@@ -7,6 +7,10 @@ import { updateStar } from "../redux/modules/week";
 const Star = (props) => {
   const { star } = props;
   const { params } = props;
+
+  // 매니저님 물어볼거 (메인 페이지에서 수정을 못하도록 true,false 처럼 조건을 줬는데 params 값받는게 없을때 {}이 나오는 이유)
+  // console.log(params);
+
   const [clickChange, setClickChange] = useState(
     [false, false, false, false, false].fill(true, 0, star)
   );
@@ -14,9 +18,9 @@ const Star = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // 매니저님 물어볼거 ( 키보드 입력 시에도 state가 변해야 맞는거같은데 왜 실제 state에서는 변하지 않는지)
   useEffect(() => {
     if (params.index) window.addEventListener("keydown", handlePress);
-
     return () => {
       window.removeEventListener("keydown", handlePress);
     };
@@ -24,27 +28,38 @@ const Star = (props) => {
 
   const handlePress = (e) => {
     if (!([0, 1, 2, 3, 4, 5].indexOf(parseInt(e.key)) === -1)) {
-      ballClick(e.key - 1);
+      // console.log(e.key);
+      ballClick(parseInt(e.key) - 1);
+    }
+    if (e.key === "Enter") {
+      handleChange();
+      console.log(e);
     }
   };
 
+  // (리팩토링 방법...? 너무 무식한거같음)
   const ballClick = (index) => {
     if (params.index) {
       switch (index) {
         case 0:
           setClickChange([true, false, false, false, false]);
+          console.log(clickChange);
           break;
         case 1:
           setClickChange([true, true, false, false, false]);
+          console.log(clickChange);
           break;
         case 2:
           setClickChange([true, true, true, false, false]);
+          console.log(clickChange);
           break;
         case 3:
           setClickChange([true, true, true, true, false]);
+          console.log(clickChange);
           break;
         case 4:
           setClickChange([true, true, true, true, true]);
+          console.log(clickChange);
           break;
         default:
           setClickChange([false, false, false, false, false]);
@@ -54,6 +69,7 @@ const Star = (props) => {
 
   const handleChange = () => {
     const new_star = clickChange.filter((el) => el).length;
+    console.log("(handleChange 안)색칠된 공 개수:", new_star);
     dispatch(updateStar(new_star, params.index));
     navigate(-1);
   };
