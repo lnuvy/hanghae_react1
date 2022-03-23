@@ -1,11 +1,10 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Star from "./Star";
 import styled from "styled-components";
 
 const Main = (props) => {
   const { weeks } = props;
-  const params = useParams();
   const navagate = useNavigate();
 
   const randoms = Array.from({ length: 7 }, () =>

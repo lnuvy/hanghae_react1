@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { useParams, useLocation } from "react-router-dom";
 import Star from "./Star";
 import styled from "styled-components";
 

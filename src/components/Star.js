@@ -3,16 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Star = (props) => {
-  const grade = props.grade;
+  const { grade } = props;
   const params = useParams();
-
   const [star, setStar] = useState(!params.index ? grade : -1);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     if (params.index) window.addEventListener("keydown", handlePress);
-
     return () => {
       window.removeEventListener("keydown", handlePress);
     };
@@ -28,7 +25,6 @@ const Star = (props) => {
     if (params.index) {
       setStar(index);
     }
-    console.log(star);
   };
 
   return (
