@@ -11,11 +11,6 @@ const Star = (props) => {
     [false, false, false, false, false].fill(true, 0, star)
   );
 
-  // 이렇게하면 바뀌네
-  // useEffect(() => {
-  //   console.log(clickChange);
-  // }, [clickChange]);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,8 +32,6 @@ const Star = (props) => {
     if (params.index) {
       setClickChange(new Array(5).fill(false).fill(true, 0, index + 1));
     }
-    // 여긴 왜 키보드 입력시 state가 안변할까 ?
-    console.log(clickChange);
   };
 
   const handleChange = () => {
