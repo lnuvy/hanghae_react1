@@ -4,12 +4,11 @@
 const MAIN = "MAIN";
 const UPDATE = "UPDATE";
 
-const random = [];
-for (let i = 0; i < 7; i++) {
-  random.push(Math.floor(Math.random() * 6));
-}
+const random = Array.from({ length: 7 }, (val) =>
+  Math.floor(Math.random() * 6)
+);
 
-console.log("redux에 담긴 난수 배열: ", random);
+console.log("처음 redux에 담긴 난수 배열: ", random);
 
 const initialState = {
   week: ["일", "월", "화", "수", "목", "금", "토"],

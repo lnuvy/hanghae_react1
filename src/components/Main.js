@@ -4,9 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Star from "./Star";
 import styled from "styled-components";
 
-// 요일 세기 (초기화되지않게 컴포넌트 위에 선언)
-let count = 0;
-
 const Main = () => {
   const params = useParams();
   const navagate = useNavigate();
@@ -16,12 +13,9 @@ const Main = () => {
 
   // 요일 찾기( 일 = 0 , 월 = 1, ... 토 = 6)
   const now = new Date().getDay();
-  if (now !== count) {
-    for (let i = 0; i < now; i++) {
-      count++;
-      weeks.push(weeks[0]);
-      weeks.shift();
-    }
+  for (let i = 0; i < now; i++) {
+    weeks.push(weeks[0]);
+    weeks.shift();
   }
 
   return (
