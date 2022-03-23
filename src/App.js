@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import "./style.css";
 import Main from "./components/Main";
 import Detail from "./components/Detail";

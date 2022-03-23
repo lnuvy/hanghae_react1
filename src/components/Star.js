@@ -40,30 +40,7 @@ const Star = (props) => {
   // (리팩토링 방법...? 너무 무식한거같음)
   const ballClick = (index) => {
     if (params.index) {
-      switch (index) {
-        case 0:
-          setClickChange([true, false, false, false, false]);
-          console.log(clickChange);
-          break;
-        case 1:
-          setClickChange([true, true, false, false, false]);
-          console.log(clickChange);
-          break;
-        case 2:
-          setClickChange([true, true, true, false, false]);
-          console.log(clickChange);
-          break;
-        case 3:
-          setClickChange([true, true, true, true, false]);
-          console.log(clickChange);
-          break;
-        case 4:
-          setClickChange([true, true, true, true, true]);
-          console.log(clickChange);
-          break;
-        default:
-          setClickChange([false, false, false, false, false]);
-      }
+      setClickChange(new Array(5).fill(false).fill(true, 0, index + 1));
     }
   };
 
